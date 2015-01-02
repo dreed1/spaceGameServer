@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var Item = require('./models/item');
 
 /* GET users listing. */
 router.get('/', function(req, res) {
@@ -7,7 +8,12 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(res, res) {
-  res.send("you posted a new item i think.");
+  var item = Item.build({
+    itemName: "someItem",
+    itemDescription: "An item nobody will ever see",
+    itemLevel: 1
+  });
+  res.send({"item": item});
 });
 
 module.exports = router;
